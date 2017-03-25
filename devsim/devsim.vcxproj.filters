@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="engine.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="poisson.cpp">
+      <Filter>random\poisson</Filter>
+    </ClCompile>
+    <ClCompile Include="exponential.cpp">
+      <Filter>random\exponential</Filter>
+    </ClCompile>
+    <ClCompile Include="distribution_random.cpp">
+      <Filter>random</Filter>
+    </ClCompile>
+    <ClCompile Include="erlang.cpp">
+      <Filter>random\erlang</Filter>
+    </ClCompile>
+    <ClCompile Include="normal.cpp">
+      <Filter>random\normal</Filter>
+    </ClCompile>
+    <ClCompile Include="rdtsc.cpp">
+      <Filter>random\rdtsc</Filter>
+    </ClCompile>
+    <ClCompile Include="block.cpp">
+      <Filter>object\block</Filter>
+    </ClCompile>
+    <ClCompile Include="source.cpp">
+      <Filter>object\block\source</Filter>
+    </ClCompile>
+    <ClCompile Include="sink.cpp">
+      <Filter>object\block\sink</Filter>
+    </ClCompile>
+    <ClCompile Include="flow.cpp">
+      <Filter>engine\flow</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>engine\event</Filter>
+    </ClCompile>
+    <ClCompile Include="resource.cpp">
+      <Filter>object\block\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="server.cpp">
+      <Filter>object\block\resources\server</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="queue.cpp">
+      <Filter>object\block\resources\queue</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>object\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="uniform.cpp">
+      <Filter>random\uniform</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="engine">
+      <UniqueIdentifier>{b2e743b0-e9c1-4532-aafa-4cc7f8edc8fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="random">
+      <UniqueIdentifier>{22d713ce-6252-463d-99ab-8591a514c79f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="event_calendar">
+      <UniqueIdentifier>{6a86a3b0-4cfc-4f63-a700-3ed08243cb36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="random\poisson">
+      <UniqueIdentifier>{3d41f319-1887-401b-b487-26a106b675a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="random\exponential">
+      <UniqueIdentifier>{8e711632-5557-463c-bc56-cce659e27bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="random\erlang">
+      <UniqueIdentifier>{eb2333bd-2e38-424f-9f2f-904b95b44bf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="random\normal">
+      <UniqueIdentifier>{fc125f80-a2b6-4410-8d90-da52010d31be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="random\rdtsc">
+      <UniqueIdentifier>{1f913d28-ab7b-43ad-b099-ae4b809ef336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine\flow">
+      <UniqueIdentifier>{5942d7bf-50e3-47d6-85a4-7479944b3c5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine\event">
+      <UniqueIdentifier>{35c0a28e-a66e-46c0-b436-c5f58dc6777c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object">
+      <UniqueIdentifier>{e155a9be-be5e-4154-902b-c3a66ad9c3b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\block">
+      <UniqueIdentifier>{09d42bdb-0e06-4bf0-9531-7163b4193066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\block\resources">
+      <UniqueIdentifier>{7fe38f8d-49a3-458e-80a3-82e1196a2313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\block\resources\server">
+      <UniqueIdentifier>{484ea81e-8035-45e3-b8b2-c183fbabc268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\block\source">
+      <UniqueIdentifier>{4c081601-4233-4a2b-a5c3-3a82f8007abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\block\sink">
+      <UniqueIdentifier>{de96618d-e43a-4f69-b3bd-165aac0fbc69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\entity">
+      <UniqueIdentifier>{1971f71f-e6f4-4838-8db7-a330ab2cf951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\block\resources\queue">
+      <UniqueIdentifier>{0c8a0870-9a1d-4904-ab81-a9a10d92d1ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="random\uniform">
+      <UniqueIdentifier>{c40f30c5-8351-4a60-9100-c3cc29ff7943}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="engine.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>object\block\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="poisson.h">
+      <Filter>random\poisson</Filter>
+    </ClInclude>
+    <ClInclude Include="exponential.h">
+      <Filter>random\exponential</Filter>
+    </ClInclude>
+    <ClInclude Include="pseudo_random.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="distribution_random.h">
+      <Filter>random</Filter>
+    </ClInclude>
+    <ClInclude Include="erlang.h">
+      <Filter>random\erlang</Filter>
+    </ClInclude>
+    <ClInclude Include="normal.h">
+      <Filter>random\normal</Filter>
+    </ClInclude>
+    <ClInclude Include="rdtsc.h">
+      <Filter>random\rdtsc</Filter>
+    </ClInclude>
+    <ClInclude Include="block.h">
+      <Filter>object\block</Filter>
+    </ClInclude>
+    <ClInclude Include="source.h">
+      <Filter>object\block\source</Filter>
+    </ClInclude>
+    <ClInclude Include="sink.h">
+      <Filter>object\block\sink</Filter>
+    </ClInclude>
+    <ClInclude Include="flow.h">
+      <Filter>engine\flow</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>engine\event</Filter>
+    </ClInclude>
+    <ClInclude Include="server.h">
+      <Filter>object\block\resources\server</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="queue.h">
+      <Filter>object\block\resources\queue</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>object\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="uniform.h">
+      <Filter>random\uniform</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
