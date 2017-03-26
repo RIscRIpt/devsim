@@ -4,17 +4,10 @@ using namespace std;
 
 #include "block.h"
 
-block::block(block_type type) :
-    block(type, nullptr)
-{}
-
-block::block(block_type type, wstring name) :
-    object(),
+block::block(::engine &engine, block_type type, wstring name) :
+    object(object_type::block),
+    engine(engine),
     type(type),
     name(name)
 {
-}
-
-block_type block::get_block_type() const {
-    return type;
 }

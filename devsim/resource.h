@@ -1,8 +1,10 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 #include "block.h"
+#include "entity.h"
 
 enum class resource_type {
     queue,
@@ -13,10 +15,10 @@ class resource :
     public block
 {
 public:
-    resource(resource_type type, std::wstring name);
+    static const unsigned INFINITE = -1;
 
-    resource_type get_resource_type() const;
+    resource(::engine &engine, resource_type type, unsigned capacity = INFINITE, std::wstring name = nullptr);
 
-private:
-    resource_type type;
+    const resource_type type;
+    const unsigned capacity;
 };

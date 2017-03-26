@@ -5,26 +5,17 @@
 using namespace rng;
 using namespace std;
 
-erlang::erlang(unsigned k, double lambda) :
-    erlang(nullptr, k, lambda)
-{}
-
-erlang::erlang(source_t *source) :
-    erlang(source, 1, 1.0)
-{}
-
-erlang::erlang(source_t *source, unsigned k, double lambda) :
-    distribution_random(source)
+erlang::erlang(source_t &source, unsigned k, double lambda) :
+    distribution_random(source),
+    k(k),
+    lambda(lambda)
 {
-    set_k(k);
-    set_lambda(lambda);
 }
 
 double erlang::next() {
-    source_t* source = get_source();
     double product = 1.0;
     for(unsigned i = 0; i < k; i++)
-        product *= source->next();
+        product *= source.next();
     return -(1.0 / lambda) * log(product);
 }
 

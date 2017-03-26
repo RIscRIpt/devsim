@@ -5,7 +5,9 @@
 namespace rng {
 
     template<typename T, typename U>
-    class pseudo_random : random<T> {
+    class pseudo_random :
+        public random<T>
+    {
     public:
         virtual void set_seed(U seed) = 0;
         virtual U get_seed() const = 0;

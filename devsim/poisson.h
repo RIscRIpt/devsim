@@ -1,7 +1,6 @@
 #pragma once
 
 #include "distribution_random.h"
-#include "exponential.h"
 
 namespace rng {
 
@@ -9,9 +8,7 @@ namespace rng {
         public distribution_random
     {
     public:
-        poisson(double lambda);
-        poisson(source_t *source);
-        poisson(source_t *source, double lambda);
+        poisson(source_t &source, double lambda);
 
         virtual double next() override;
         virtual double minimal() const override;
@@ -21,6 +18,6 @@ namespace rng {
         void set_lambda(double value);
 
     private:
-        exponential exp_d;
+        double lambda;
     };
 }

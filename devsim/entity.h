@@ -6,6 +6,8 @@ class entity :
     public object
 {
 public:
-    entity();
+    entity(object::id_t source_id);
+
+    const object::id_t source_id;
 
 };

@@ -112,6 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="block.cpp" />
+    <ClCompile Include="container.cpp" />
     <ClCompile Include="distribution_random.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -124,15 +125,15 @@
     <ClCompile Include="normal.cpp" />
     <ClCompile Include="poisson.cpp" />
     <ClCompile Include="queue.cpp" />
-    <ClCompile Include="rdtsc.cpp" />
     <ClCompile Include="server.cpp" />
     <ClCompile Include="sink.cpp" />
     <ClCompile Include="source.cpp" />
     <ClCompile Include="resource.cpp" />
-    <ClCompile Include="uniform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="block.h" />
+    <ClInclude Include="container.h" />
+    <ClInclude Include="devsim.h" />
     <ClInclude Include="distribution_random.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity.h" />
@@ -145,13 +146,11 @@
     <ClInclude Include="poisson.h" />
     <ClInclude Include="pseudo_random.h" />
     <ClInclude Include="queue.h" />
-    <ClInclude Include="rdtsc.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="server.h" />
     <ClInclude Include="sink.h" />
     <ClInclude Include="source.h" />
-    <ClInclude Include="uniform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

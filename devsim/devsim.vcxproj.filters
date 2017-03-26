@@ -20,9 +20,6 @@
     <ClCompile Include="normal.cpp">
       <Filter>random\normal</Filter>
     </ClCompile>
-    <ClCompile Include="rdtsc.cpp">
-      <Filter>random\rdtsc</Filter>
-    </ClCompile>
     <ClCompile Include="block.cpp">
       <Filter>object\block</Filter>
     </ClCompile>
@@ -53,8 +50,8 @@
     <ClCompile Include="entity.cpp">
       <Filter>object\entity</Filter>
     </ClCompile>
-    <ClCompile Include="uniform.cpp">
-      <Filter>random\uniform</Filter>
+    <ClCompile Include="container.cpp">
+      <Filter>object\block\container</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,9 +75,6 @@
     </Filter>
     <Filter Include="random\normal">
       <UniqueIdentifier>{fc125f80-a2b6-4410-8d90-da52010d31be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="random\rdtsc">
-      <UniqueIdentifier>{1f913d28-ab7b-43ad-b099-ae4b809ef336}</UniqueIdentifier>
     </Filter>
     <Filter Include="engine\flow">
       <UniqueIdentifier>{5942d7bf-50e3-47d6-85a4-7479944b3c5d}</UniqueIdentifier>
@@ -112,8 +106,8 @@
     <Filter Include="object\block\resources\queue">
       <UniqueIdentifier>{0c8a0870-9a1d-4904-ab81-a9a10d92d1ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="random\uniform">
-      <UniqueIdentifier>{c40f30c5-8351-4a60-9100-c3cc29ff7943}</UniqueIdentifier>
+    <Filter Include="object\block\container">
+      <UniqueIdentifier>{51377f13-b6d0-4e34-afb1-948ee200f637}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +138,6 @@
     <ClInclude Include="normal.h">
       <Filter>random\normal</Filter>
     </ClInclude>
-    <ClInclude Include="rdtsc.h">
-      <Filter>random\rdtsc</Filter>
-    </ClInclude>
     <ClInclude Include="block.h">
       <Filter>object\block</Filter>
     </ClInclude>
@@ -174,8 +165,9 @@
     <ClInclude Include="entity.h">
       <Filter>object\entity</Filter>
     </ClInclude>
-    <ClInclude Include="uniform.h">
-      <Filter>random\uniform</Filter>
+    <ClInclude Include="container.h">
+      <Filter>object\block\container</Filter>
     </ClInclude>
+    <ClInclude Include="devsim.h" />
   </ItemGroup>
 </Project>

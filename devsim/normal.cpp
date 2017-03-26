@@ -6,27 +6,18 @@
 using namespace rng;
 using namespace std;
 
-normal::normal(double mean, double sd) :
-    normal(nullptr, mean, sd)
-{}
-
-normal::normal(source_t *source) :
-    normal(source, 0.0, 1.0)
-{}
-
-normal::normal(source_t *source, double mean, double sd) :
-    distribution_random(source)
+normal::normal(source_t &source, double mean, double sd) :
+    distribution_random(source),
+    mean(mean),
+    sd(sd)
 {
-    set_mean(mean);
-    set_sd(sd);
 }
 
 double normal::next() {
-    source_t *source = get_source();
     double x, result;
     do {
-        result = mean + sd * source->next();
-        x = source->next();
+        result = mean + sd * source.next();
+        x = source.next();
     } while(!in_standard_bell(x, result));
     return result;
 }

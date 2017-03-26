@@ -4,11 +4,8 @@ using namespace std;
 
 #include "resource.h"
 
-resource::resource(resource_type type, wstring name) :
-    block(block_type::resource, name),
-    type(type)
+resource::resource(::engine &engine, resource_type type, unsigned capacity, wstring name) :
+    block(engine, block_type::resource, name),
+    type(type),
+    capacity(capacity)
 {}
-
-resource_type resource::get_resource_type() const {
-    return type;
-}

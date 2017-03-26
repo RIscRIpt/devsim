@@ -5,22 +5,21 @@
 using namespace rng;
 using namespace std;
 
-poisson::poisson(double lambda) :
-    poisson(nullptr, lambda)
-{}
-
-poisson::poisson(source_t *source) :
-    poisson(source, 1.0)
-{}
-
-poisson::poisson(source_t *source, double lambda) :
+poisson::poisson(source_t &source, double lambda) :
     distribution_random(source),
-    exp_d(lambda)
+    lambda(lambda)
 {
 }
 
 double poisson::next() {
-    return exp_d.next();
+    double L = exp(-lambda);
+    unsigned k = -1;
+    double p = 1.0;
+    do {
+        k++;
+        p *= source.next();
+    } while(p > L);
+    return k;
 }
 
 double poisson::minimal() const {
@@ -32,9 +31,9 @@ double poisson::maximal() const {
 }
 
 double poisson::get_lambda() const {
-    return exp_d.get_lambda();
+    return lambda;
 }
 
 void poisson::set_lambda(double value) {
-    exp_d.set_lambda(value);
+    lambda = value;
 }

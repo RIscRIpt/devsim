@@ -10,13 +10,9 @@ namespace rng {
     public:
         typedef random<double> source_t;
 
-        distribution_random(source_t *source);
+        distribution_random(source_t &source);
 
-        source_t* get_source();
-        void set_source(source_t *rnd);
-
-    private:
-        source_t *source;
+        source_t &source;
     };
 
 }

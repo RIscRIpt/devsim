@@ -1,9 +1,10 @@
 #pragma once
 
-#include "flow.h"
-#include "event.h"
-
+#include <vector>
+#include <memory>
 #include <functional>
+
+#include "devsim.h"
 
 class engine
 {
@@ -14,18 +15,20 @@ public:
     engine();
     ~engine();
 
-    double get_time() const { return time; }
+    engine_time get_time() const { return time; }
 
     void run();
 
-    engine& add(flow &f);
+    engine& add(std::shared_ptr<flow> f);
 
     void set_stop_condition(fn_stop_condition_t fn);
     void set_event_listener(fn_event_callback_t fn);
 
 private:
-    double time;
+    engine_time time;
 
     fn_stop_condition_t fn_stop_condition;
     fn_event_callback_t fn_event_callback;
+
+    std::vector<std::shared_ptr<flow>> flows;
 };

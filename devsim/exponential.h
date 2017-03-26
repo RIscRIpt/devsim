@@ -8,9 +8,7 @@ namespace rng {
         public distribution_random
     {
     public:
-        exponential(double lambda);
-        exponential(source_t *source);
-        exponential(source_t *source, double lambda);
+        exponential(source_t &source, double lambda);
 
         virtual double next() override;
         virtual double minimal() const override;

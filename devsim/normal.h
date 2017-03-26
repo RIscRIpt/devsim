@@ -8,9 +8,7 @@ namespace rng {
         public distribution_random
     {
     public:
-        normal(double mean, double sd);
-        normal(source_t *source);
-        normal(source_t *source, double mean, double sd);
+        normal(source_t &source, double mean, double sd);
 
         virtual double next() override;
         virtual double minimal() const override;
