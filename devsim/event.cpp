@@ -1,4 +1,6 @@
 #include "event.h"
 
-event::event() {
+event::event(event_type type) :
+    type(type)
+{
 }

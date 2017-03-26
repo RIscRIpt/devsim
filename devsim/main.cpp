@@ -1,3 +1,5 @@
+#include <iostream>
+#include <iomanip>
 #include <functional>
 #include <memory>
 
@@ -11,7 +13,6 @@
 #include "exponential.h"
 #include "erlang.h"
 #include "normal.h"
-#include "poisson.h"
 
 #include "container.h"
 #include "source.h"
@@ -47,22 +48,18 @@ class rdtsc_rand :
     virtual double maximal() const override { return 1.0; }
 };
 
-void event_handler(const engine &eng, const event &ev) {
-
-}
-
 int main() {
     engine e;
 
     auto random_source = make_shared<cpp_rand>();
 
-    rng::poisson rng_pois(*random_source, 0.2);
+    rng::exponential rng_pois(*random_source, 0.2);
     rng::erlang rng_erlang(*random_source, 2, 0.1);
     rng::normal rng_normal(*random_source, 20, 3);
     rng::exponential rng_exp(*random_source, 0.2);
 
-    source s_pois(e, rng_pois, L"source::poisson");
-    source s_erlang(e, rng_erlang, L"source::erlang");
+    source s_pois(e, rng_pois, L"l1");
+    source s_erlang(e, rng_erlang, L"l2");
 
     queue q(e, L"queue", queue::INFINITE, queue_kind::LIFO);
 
@@ -90,8 +87,40 @@ int main() {
     e.set_stop_condition([](const engine &e) -> bool {
         return e.get_time() >= 500.0;
     });
-    e.set_event_listener(event_handler);
+    e.set_event_listener([&](const engine &eng, const event &ev) -> void {
+        if(ev.type != event_type::spawn_entity)
+            return;
+        auto &spawn_ent_ev = static_cast<const event_spawn_entity&>(ev);
+
+        wstring spawn_name;
+        if(spawn_ent_ev.ent->source_id == s_pois.id)
+            spawn_name = s_pois.name;
+        else
+            spawn_name = s_erlang.name;
+
+        wstring server_busy_with = L"none";
+        auto serving = server.peek();
+        if(serving != nullptr) {
+            if(serving->source_id == s_pois.id)
+                server_busy_with = s_pois.name;
+            else if(serving->source_id == s_erlang.id)
+                server_busy_with = s_erlang.name;
+        }
+
+        wcout << setprecision(3)
+            << setw(4) << spawn_name << ','
+            << setw(8) << eng.get_time() << ','
+            << setw(8) << s_pois.next_available_time() << ','
+            << setw(8) << s_erlang.next_available_time() << ','
+            << setw(8) << server.next_available_time() << ','
+            << setw(2) << (server.engaged() > 0) << ','
+            << setw(8) << q.engaged() << ','
+            << setw(8) << server_busy_with << '\n';
+    });
     e.run();
+    
+    //TODO: fix destructors
+    exit(1);
 
     return 0;
 }

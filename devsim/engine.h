@@ -25,6 +25,8 @@ public:
     void set_event_listener(fn_event_callback_t fn);
 
 private:
+    void flow_event(const event &ev);
+
     engine_time time;
 
     fn_stop_condition_t fn_stop_condition;

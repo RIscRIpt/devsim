@@ -33,6 +33,7 @@ void engine::run() {
 
 engine& engine::add(shared_ptr<flow> f) {
     flows.push_back(f);
+    f->set_event_listener(bind(&engine::flow_event, this, placeholders::_1));
     return *this;
 }
 
@@ -42,4 +43,10 @@ void engine::set_stop_condition(fn_stop_condition_t fn) {
 
 void engine::set_event_listener(fn_event_callback_t fn) {
     fn_event_callback = fn;
+}
+
+void engine::flow_event(const event &ev) {
+    if(fn_event_callback == nullptr)
+        return;
+    fn_event_callback(*this, ev);
 }

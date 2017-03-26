@@ -22,6 +22,8 @@ public:
     virtual bool can_get() const override;
     virtual bool put(std::shared_ptr<entity> e) override;
     virtual std::shared_ptr<entity> get() override;
+    virtual unsigned engaged() const override;
+    virtual std::shared_ptr<entity> peek() const override;
 
 private:
     bool is_served_before(std::shared_ptr<entity> e1, std::shared_ptr<entity> e2);

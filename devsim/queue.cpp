@@ -23,11 +23,11 @@ engine_time queue::next_available_time() const {
 }
 
 bool queue::can_put() const {
-    return capacity == INFINITE || container.size() < capacity;
+    return capacity == INFINITE || engaged() < capacity;
 }
 
 bool queue::can_get() const {
-    return container.size() > 0;
+    return engaged() > 0;
 }
 
 bool queue::put(shared_ptr<entity> e) {
@@ -55,4 +55,14 @@ shared_ptr<entity> queue::get() {
     }
 
     return e;
+}
+
+unsigned queue::engaged() const {
+    return container.size();
+}
+
+shared_ptr<entity> queue::peek() const {
+    if(engaged() <= 0)
+        return nullptr;
+    return container.front();
 }

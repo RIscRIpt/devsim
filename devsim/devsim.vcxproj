@@ -123,7 +123,6 @@
     <ClCompile Include="flow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="normal.cpp" />
-    <ClCompile Include="poisson.cpp" />
     <ClCompile Include="queue.cpp" />
     <ClCompile Include="server.cpp" />
     <ClCompile Include="sink.cpp" />
@@ -143,7 +142,6 @@
     <ClInclude Include="exponential.h" />
     <ClInclude Include="flow.h" />
     <ClInclude Include="normal.h" />
-    <ClInclude Include="poisson.h" />
     <ClInclude Include="pseudo_random.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="resource.h" />

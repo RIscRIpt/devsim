@@ -5,9 +5,6 @@
     <ClCompile Include="engine.cpp">
       <Filter>engine</Filter>
     </ClCompile>
-    <ClCompile Include="poisson.cpp">
-      <Filter>random\poisson</Filter>
-    </ClCompile>
     <ClCompile Include="exponential.cpp">
       <Filter>random\exponential</Filter>
     </ClCompile>
@@ -64,9 +61,6 @@
     <Filter Include="event_calendar">
       <UniqueIdentifier>{6a86a3b0-4cfc-4f63-a700-3ed08243cb36}</UniqueIdentifier>
     </Filter>
-    <Filter Include="random\poisson">
-      <UniqueIdentifier>{3d41f319-1887-401b-b487-26a106b675a5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="random\exponential">
       <UniqueIdentifier>{8e711632-5557-463c-bc56-cce659e27bf6}</UniqueIdentifier>
     </Filter>
@@ -119,9 +113,6 @@
     </ClInclude>
     <ClInclude Include="random.h">
       <Filter>random</Filter>
-    </ClInclude>
-    <ClInclude Include="poisson.h">
-      <Filter>random\poisson</Filter>
     </ClInclude>
     <ClInclude Include="exponential.h">
       <Filter>random\exponential</Filter>

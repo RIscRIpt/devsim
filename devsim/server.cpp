@@ -18,13 +18,13 @@ void server::set_serve_distribution(source::id_t id, shared_ptr<rng::distributio
 }
 
 engine_time server::next_available_time() const {
-    if(serving.size() <= 0)
+    if(engaged() <= 0)
         return NEVER;
     return serving_end_time.find(serving.front()->id)->second;
 }
 
 bool server::can_put() const {
-    return serving.size() < capacity;
+    return engaged() < capacity;
 }
 
 bool server::can_get() const {
@@ -49,6 +49,16 @@ shared_ptr<entity> server::get() {
     pop_heap(serving.begin(), serving.end(), bind(&server::is_served_before, this, placeholders::_1, placeholders::_2));
     serving.pop_back();
     return served;
+}
+
+unsigned server::engaged() const {
+    return serving.size();
+}
+
+shared_ptr<entity> server::peek() const {
+    if(engaged() <= 0)
+        return nullptr;
+    return serving.front();
 }
 
 bool server::is_served_before(shared_ptr<entity> e1, shared_ptr<entity> e2) {
