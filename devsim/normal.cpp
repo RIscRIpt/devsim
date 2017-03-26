@@ -14,12 +14,12 @@ normal::normal(source_t &source, double mean, double sd) :
 }
 
 double normal::next() {
-    double x, result;
+    double x, standard;
     do {
-        result = mean + sd * source.next();
-        x = source.next();
-    } while(!in_standard_bell(x, result));
-    return result;
+        standard = -5.0 + 10.0 * source.next();
+        x = 0.4 * source.next();
+    } while(!in_standard_bell(x, standard));
+    return mean + sd * standard;
 }
 
 bool normal::in_standard_bell(double x, double value) {
