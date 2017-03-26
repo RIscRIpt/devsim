@@ -50,6 +50,30 @@ public:
     virtual double maximal() const override { return 1.0; }
 };
 
+template<typename T>
+int test_random(rng::random<T> &rand, int max_stars) {
+    const int intervals = 100;
+    const int rolls = 1e6;
+    int counts[intervals];
+    memset(counts, 0, sizeof(counts));
+    for(int i = 0; i < rolls; i++) {
+        double number = rand.next();
+        if(number >= 0 && number < intervals)
+            ++counts[int(number)];
+    }
+    for(int i = 0; i < intervals; i++) {
+        auto stars = wstring(counts[i] * max_stars / rolls, '*');
+        wcout
+            << setw(3) << i
+            << '-'
+            << setw(3) << (i + 1)
+            << ':'
+            << stars
+            << endl;
+    }
+    exit(1);
+}
+
 int main() {
     engine e;
 
@@ -60,6 +84,8 @@ int main() {
     rng::erlang rng_erlang(*random_source, 2, 0.1);
     rng::normal rng_normal(*random_source, 20, 3);
     rng::exponential rng_exp(*random_source, 0.2);
+
+    return test_random(rng_normal, 500);
 
     source s_pois(e, rng_pois, L"l1");
     source s_erlang(e, rng_erlang, L"l2");

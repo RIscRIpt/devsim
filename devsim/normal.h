@@ -23,7 +23,5 @@ namespace rng {
     private:
         double mean;
         double sd;
-
-        bool in_standard_bell(double x, double value);
     };
 }
