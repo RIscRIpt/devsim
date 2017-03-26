@@ -90,7 +90,18 @@ int main() {
     e.set_stop_condition([](const engine &e) -> bool {
         return e.get_time() >= 500.0;
     });
+
+    engine_time server_last_free_time = 0.0;
+    engine_time server_used_time = 0.0;
+    unsigned max_l1_count = 0;
     e.set_event_listener([&](const engine &eng, const event &ev) -> void {
+        if(ev.type == event_type::server_free || ev.type == event_type::server_busy) {
+            if(ev.type == event_type::server_free) {
+                server_used_time += eng.get_time() - server_last_free_time;
+                server_last_free_time = eng.get_time();
+            }
+            return;
+        }
         wstring spawn_name = L"";
         if(ev.type == event_type::spawn_entity) {
             auto &spawn_ent_ev = static_cast<const event_spawn_entity&>(ev);
@@ -109,7 +120,7 @@ int main() {
                 server_busy_with = s_erlang.name;
         }
 
-        wcout << setprecision(3)
+        wcout << setprecision(6)
             << setw(4) << spawn_name << ','
             << setw(8) << eng.get_time() << ','
             << setw(8) << s_pois.next_available_time() << ','
@@ -118,8 +129,21 @@ int main() {
             << setw(2) << (server.engaged() > 0) << ','
             << setw(8) << q.engaged() << ','
             << setw(8) << server_busy_with << '\n';
+
+        unsigned count_l1 = q.engaged([&](entity &ent) -> bool {
+            return ent.source_id == s_pois.id;
+        });
+        if(max_l1_count < count_l1)
+            max_l1_count = count_l1;
     });
     e.run();
+
+    server_used_time += 500.0 - server_last_free_time;
+    double server_usage = server_used_time / 500.0;
+
+    wcout << endl
+        << L"Server usage: " << server_usage << endl
+        << L"Max L1 count: " << max_l1_count << endl;
 
     //TODO: fix destructors
     exit(1);

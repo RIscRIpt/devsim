@@ -43,9 +43,28 @@ engine_time flow::shed() {
                 if(!next_block->put(ent))
                     throw 1;
 
-                if(curr_block->type == block_type::container) {
-                    auto source_block = static_pointer_cast<source>(curr_block);
+                switch(curr_block->type) {
+                case block_type::container:
+                {
+                    auto source_block = static_pointer_cast<source>(curr_block); //doesn't work
                     events.push_back(make_shared<event_spawn_entity>(source_block, ent));
+                    break;
+                }
+                case block_type::resource:
+                {
+                    auto resource_block = static_pointer_cast<resource>(curr_block);
+                    switch(resource_block->type) {
+                    case resource_type::server:
+                    {
+                        auto server_block = static_pointer_cast<server>(resource_block);
+                        if(could_put && !server_block->can_put())
+                            events.push_back(make_shared<event_server_busy>(server_block));
+                        else if(!could_put && server_block->can_put())
+                            events.push_back(make_shared<event_server_free>(server_block));
+                        break;
+                    }
+                    }
+                }
                 }
             }
             if(!could_put && curr_block->can_put()) {

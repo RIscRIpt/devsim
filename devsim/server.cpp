@@ -55,6 +55,14 @@ unsigned server::engaged() const {
     return serving.size();
 }
 
+unsigned server::engaged(std::function<bool(entity&)> pred) const {
+    unsigned count = 0;
+    for(auto &&e : serving) {
+        count += pred(*e);
+    }
+    return count;
+}
+
 shared_ptr<entity> server::peek() const {
     if(engaged() <= 0)
         return nullptr;

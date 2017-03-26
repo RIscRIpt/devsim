@@ -61,6 +61,14 @@ unsigned queue::engaged() const {
     return container.size();
 }
 
+unsigned queue::engaged(std::function<bool(entity&)> pred) const {
+    unsigned count = 0;
+    for(auto &&e : container) {
+        count += pred(*e);
+    }
+    return count;
+}
+
 shared_ptr<entity> queue::peek() const {
     if(engaged() <= 0)
         return nullptr;

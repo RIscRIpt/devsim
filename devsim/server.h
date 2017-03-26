@@ -23,6 +23,7 @@ public:
     virtual bool put(std::shared_ptr<entity> e) override;
     virtual std::shared_ptr<entity> get() override;
     virtual unsigned engaged() const override;
+    virtual unsigned engaged(std::function<bool(entity&)> pred) const override;
     virtual std::shared_ptr<entity> peek() const override;
 
 private:

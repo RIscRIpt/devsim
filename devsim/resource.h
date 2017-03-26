@@ -2,6 +2,7 @@
 
 #include <string>
 #include <memory>
+#include <functional>
 
 #include "block.h"
 #include "entity.h"
@@ -20,6 +21,7 @@ public:
     resource(::engine &engine, resource_type type, unsigned capacity = INFINITE, std::wstring name = nullptr);
 
     virtual unsigned engaged() const = 0;
+    virtual unsigned engaged(std::function<bool(entity&)> pred) const = 0;
     virtual std::shared_ptr<entity> peek() const = 0;
 
     const resource_type type;
