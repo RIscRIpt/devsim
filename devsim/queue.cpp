@@ -19,7 +19,7 @@ void queue::set_kind(queue_kind value) {
 }
 
 engine_time queue::next_available_time() const {
-    return NEVER;
+    return can_get() ? ALWAYS : NEVER;
 }
 
 bool queue::can_put() const {

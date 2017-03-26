@@ -31,6 +31,7 @@ __declspec(naked) unsigned _fast_rand() {
 class cpp_rand :
     public rng::pseudo_random<double, unsigned int>
 {
+public:
     virtual double next() override { return (double)rand() / RAND_MAX; }
     virtual double minimal() const override { return 0.0; }
     virtual double maximal() const override { return 1.0; }
@@ -43,6 +44,7 @@ private:
 class rdtsc_rand :
     public rng::random<double>
 {
+public:
     virtual double next() override { return (double)_fast_rand() / (double)0xFFFFFFFF; }
     virtual double minimal() const override { return 0.0; }
     virtual double maximal() const override { return 1.0; }
@@ -52,6 +54,7 @@ int main() {
     engine e;
 
     auto random_source = make_shared<cpp_rand>();
+    random_source->set_seed(time(NULL));
 
     rng::exponential rng_pois(*random_source, 0.2);
     rng::erlang rng_erlang(*random_source, 2, 0.1);
@@ -75,7 +78,7 @@ int main() {
         .add(shared_ptr<block>(&s_pois))
         .add(shared_ptr<block>(&s_erlang));
 
-    flow f;
+    flow f(e);
     f
         .add(shared_ptr<block>(&sources))
         .add(shared_ptr<block>(&q))
@@ -88,15 +91,14 @@ int main() {
         return e.get_time() >= 500.0;
     });
     e.set_event_listener([&](const engine &eng, const event &ev) -> void {
-        if(ev.type != event_type::spawn_entity)
-            return;
-        auto &spawn_ent_ev = static_cast<const event_spawn_entity&>(ev);
-
-        wstring spawn_name;
-        if(spawn_ent_ev.ent->source_id == s_pois.id)
-            spawn_name = s_pois.name;
-        else
-            spawn_name = s_erlang.name;
+        wstring spawn_name = L"";
+        if(ev.type == event_type::spawn_entity) {
+            auto &spawn_ent_ev = static_cast<const event_spawn_entity&>(ev);
+            if(spawn_ent_ev.ent->source_id == s_pois.id)
+                spawn_name = s_pois.name;
+            else
+                spawn_name = s_erlang.name;
+        }
 
         wstring server_busy_with = L"none";
         auto serving = server.peek();
@@ -118,7 +120,7 @@ int main() {
             << setw(8) << server_busy_with << '\n';
     });
     e.run();
-    
+
     //TODO: fix destructors
     exit(1);
 

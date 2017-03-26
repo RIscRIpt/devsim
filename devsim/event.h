@@ -5,6 +5,7 @@
 #include "source.h"
 
 enum class event_type {
+    begin,
     spawn_entity,
 };
 
@@ -15,6 +16,13 @@ public:
 
     const event_type type;
 
+};
+
+class event_begin : public event {
+public:
+    event_begin() :
+        event(event_type::begin)
+    {}
 };
 
 class event_spawn_entity : public event {

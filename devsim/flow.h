@@ -9,24 +9,24 @@
 #include "resource.h"
 #include "source.h"
 #include "sink.h"
+#include "devsim.h"
 
 class flow
 {
 public:
     typedef std::function<void(const event&)> fn_event_callback_t;
 
-    flow();
+    flow(engine &engine);
 
     flow& add(std::shared_ptr<block> b);
 
 private:
     friend class engine;
+    engine &engine;
 
     engine_time shed();
 
     void set_event_listener(fn_event_callback_t fn);
-
-    void on_entity_moved(std::shared_ptr<block> dest, std::shared_ptr<block> src, std::shared_ptr<entity> ent);
 
     fn_event_callback_t fn_event_callback;
 

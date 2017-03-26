@@ -16,6 +16,8 @@ engine::~engine() {
 
 void engine::run() {
     time = 0;
+    if(fn_event_callback != nullptr)
+        fn_event_callback(*this, *make_shared<event_begin>());
     while(true) {
         if(fn_stop_condition != nullptr) {
             if(fn_stop_condition(*this))
@@ -26,6 +28,8 @@ void engine::run() {
             engine_time next_shed = f->shed();
             if(next_possible_shed > next_shed)
                 next_possible_shed = next_shed;
+            if(next_possible_shed == ALWAYS)
+                next_possible_shed = get_time();
             time = next_possible_shed;
         }
     }
